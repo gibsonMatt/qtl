@@ -47,8 +47,8 @@ read.cross.karl <-
     }
 
     # read data
-    geno <- as.matrix(read.table(genfile,na.strings="0"))
-    pheno <- as.matrix(read.table(phefile,na.strings="-",header=TRUE))
+    geno <- as.matrix(fread(genfile,na.strings="0"))
+    pheno <- as.matrix(fread(phefile,na.strings="-",header=TRUE))
     tempmap <- scan(mapfile, what=character(),quiet=TRUE)
 
     # fix up map information

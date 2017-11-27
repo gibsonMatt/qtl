@@ -63,40 +63,23 @@ read.cross.csvs <-
     # read the data file
     if(length(args) < 1 || !("sep" %in% names(args))) {
         # "sep" not in the "..." argument and so take sep=","
-        if(length(args) < 1 || !("comment.char" %in% names(args))) {
-            gen <- read.table(genfile, sep=",", na.strings=na.strings,
-                              colClasses="character", fill=TRUE,
-                              blank.lines.skip=TRUE, comment.char="", ...)
-            pheno <- read.table(phefile, sep=",", na.strings=na.strings,
-                                colClasses="character", fill=TRUE,
-                                blank.lines.skip=TRUE, comment.char="", ...)
-        }
-        else {
-            gen <- read.table(genfile, sep=",", na.strings=na.strings,
-                              colClasses="character", fill=TRUE,
-                              blank.lines.skip=TRUE, ...)
-            pheno <- read.table(phefile, sep=",", na.strings=na.strings,
-                                colClasses="character", fill=TRUE,
-                                blank.lines.skip=TRUE, ...)
-        }
+    
+        gen <- fread(genfile, sep=",", na.strings=na.strings,
+                          colClasses="character", fill=TRUE,
+                          blank.lines.skip=TRUE, header= FALSE, ...)
+        pheno <- fread(phefile, sep=",", na.strings=na.strings,
+                            colClasses="character", fill=TRUE,
+                            blank.lines.skip=TRUE, header=FALSE, ...)
+        
     }
     else {
-        if(length(args) < 1 || !("comment.char" %in% names(args))) {
-            gen <- read.table(genfile, na.strings=na.strings,
-                              colClasses="character", fill=TRUE,
-                              blank.lines.skip=TRUE, comment.char="", ...)
-            pheno <- read.table(phefile, na.strings=na.strings,
-                                colClasses="character", fill=TRUE,
-                                blank.lines.skip=TRUE, comment.char="", ...)
-        }
-        else {
-            gen <- read.table(genfile, na.strings=na.strings,
-                              colClasses="character", fill=TRUE,
-                              blank.lines.skip=TRUE, ...)
-            pheno <- read.table(phefile, na.strings=na.strings,
-                                colClasses="character", fill=TRUE,
-                                blank.lines.skip=TRUE, ...)
-        }
+        
+        gen <- fread(genfile, na.strings=na.strings,
+                          colClasses="character", fill=TRUE,
+                          blank.lines.skip=TRUE, ...)
+        pheno <- fread(phefile, na.strings=na.strings,
+                            colClasses="character", fill=TRUE,
+                            blank.lines.skip=TRUE, ...)
     }
 
     if(rotate) {

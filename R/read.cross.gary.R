@@ -54,13 +54,13 @@ read.cross.gary <-
     }
 
     # read data
-    allgeno <- as.matrix(read.table(genfile,na.strings="9"))+1
-    pheno <- as.matrix(read.table(phefile,na.strings=na.strings,header=FALSE))
+    allgeno <- as.matrix(fread(genfile,na.strings="9"))+1
+    pheno <- as.matrix(fread(phefile,na.strings=na.strings,header=FALSE))
     chr <- scan(chridfile,what=character(),quiet=TRUE)
     mnames <- scan(mnamesfile,what=character(),quiet=TRUE)
 
     if(!is.null(mapfile)) {
-        map <- read.table(mapfile,row.names=1)
+        map <- read.table(mapfile)
         map <- map[mnames,1]
         map.included <- TRUE
     }

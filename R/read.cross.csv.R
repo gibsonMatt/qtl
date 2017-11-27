@@ -60,23 +60,13 @@ read.cross.csv <-
     # read the data file
     if(length(args) < 1 || !("sep" %in% names(args))) {
         # "sep" not in the "..." argument and so take sep=","
-        if(length(args) < 1 || !("comment.char" %in% names(args)))
-            data <- read.table(file, sep=",", na.strings=na.strings,
-                               colClasses="character", fill=TRUE,
-                               blank.lines.skip=TRUE, comment.char="", ...)
-        else
-            data <- read.table(file, sep=",", na.strings=na.strings,
-                               colClasses="character", fill=TRUE,
+            data <- fread(file, sep=",", na.strings=na.strings,
+                               colClasses="character", fill=TRUE, header=FALSE,
                                blank.lines.skip=TRUE, ...)
     }
     else {
-        if(length(args) < 1 || !("comment.char" %in% names(args)))
-            data <- read.table(file, na.strings=na.strings,
-                               colClasses="character", fill=TRUE,
-                               blank.lines.skip=TRUE, comment.char="", ...)
-        else
-            data <- read.table(file, na.strings=na.strings,
-                               colClasses="character", fill=TRUE,
+            data <- fread(file, na.strings=na.strings,
+                               colClasses="character", fill=TRUE,header=FALSE,
                                blank.lines.skip=TRUE, ...)
     }
 
